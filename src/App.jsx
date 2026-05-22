@@ -1,23 +1,23 @@
-import Navigation from './components/navigation/Navigation'
-import Logo from './components/logo/Logo'
-import ImageLinkForm from './components/imagelinkform/ImageLinkForm'
-import Rank from './components/rank/Rank'
-import ParticlesBg from 'particles-bg'
-import './App.css';
+import Navigation from "./components/navigation/Navigation";
+import Logo from "./components/logo/Logo";
+import ImageLinkForm from "./components/imagelinkform/ImageLinkForm";
+import Rank from "./components/rank/Rank";
+import ParticlesBg from "particles-bg";
+import "./App.css";
 
 function App() {
-	return (
-		<div className="App">
-			<ParticlesBg type="cobweb" bg={true} />
-			<Navigation />
-			<Logo />
-			<Rank />
-			<ImageLinkForm />
-			{/*
+  return (
+    <div className="App">
+      <ParticlesBg type="cobweb" bg={true} />
+      <Navigation />
+      <Logo />
+      <Rank />
+      <ImageLinkForm />
+      {/*
 			<FaceRecognition />
 			*/}
-		</div>
-	)
+    </div>
+  );
 }
 
-export default App
+export default App;
