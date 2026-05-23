@@ -1,6 +1,6 @@
 import "./FaceRecognition.css";
 
-const FaceRecognition = ({ imageUrl, imageRef, box }) => {
+const FaceRecognition = ({ imageUrl, imageRef, box, onImageLoad }) => {
   return (
     <div className="center ma">
       <div className="mt2 face-recognition-container">
@@ -10,6 +10,7 @@ const FaceRecognition = ({ imageUrl, imageRef, box }) => {
             src={imageUrl}
             className="face-recognition-image"
             ref={imageRef}
+            onLoad={onImageLoad}
           />
         )}
 

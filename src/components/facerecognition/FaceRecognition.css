@@ -10,8 +10,44 @@
   padding: 16px;
   border-radius: 16px;
   overflow: hidden;
-  background-color: transparent;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+  background: rgba(38, 38, 49, 0.5);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 5px,
+      rgba(99, 102, 241, 0.15) 5px,
+      rgba(99, 102, 241, 0.15) 6px,
+      transparent 6px,
+      transparent 15px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 5px,
+      rgba(99, 102, 241, 0.15) 5px,
+      rgba(99, 102, 241, 0.15) 6px,
+      transparent 6px,
+      transparent 15px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 10px,
+      rgba(139, 92, 246, 0.12) 10px,
+      rgba(139, 92, 246, 0.12) 11px,
+      transparent 11px,
+      transparent 30px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 10px,
+      rgba(139, 92, 246, 0.12) 10px,
+      rgba(139, 92, 246, 0.12) 11px,
+      transparent 11px,
+      transparent 30px
+    );
   border: 2px solid #667eea33;
   box-shadow: 0 12px 32px rgba(102, 126, 234, 0.15);
 }
