@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Navigation from "./components/navigation/Navigation";
 import Logo from "./components/logo/Logo";
 import ImageLinkForm from "./components/imagelinkform/ImageLinkForm";
@@ -10,6 +10,8 @@ import "./App.css";
 function App() {
   const [input, setInput] = useState("");
   const [imageUrl, setImageUrl] = useState(null);
+  const [box, setBox] = useState({});
+  const imageRef = useRef(null);
 
   const onInputChange = (event) => {
     setInput(event.target.value);
@@ -17,6 +19,25 @@ function App() {
 
   const onButtonSubmit = () => {
     setImageUrl(input);
+    displayBox(getBoxLocation());
+  };
+
+  const getBoxLocation = () => {
+    if (imageRef.current) {
+      const height = imageRef.current.height;
+      const width = imageRef.current.width;
+
+      return {
+        leftCol: 0.5 * width, // Left upper corner - X (0 to width)
+        topRow: 0.5 * height, // Left upper corner - Y (0 to height)
+        rightCol: 0.75 * width, // Right lower corner - X (0 to width)
+        bottomRow: 0.75 * height, // Right lower corner - Y (0 to height)
+      };
+    }
+  };
+
+  const displayBox = (box) => {
+    setBox(box);
   };
 
   return (
@@ -30,7 +51,7 @@ function App() {
         onInputChange={onInputChange}
         onButtonSubmit={onButtonSubmit}
       />
-      <FaceRecognition imageUrl={imageUrl} />
+      <FaceRecognition imageUrl={imageUrl} imageRef={imageRef} box={box} />
     </div>
   );
 }

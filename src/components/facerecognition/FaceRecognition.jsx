@@ -1,11 +1,28 @@
 import "./FaceRecognition.css";
 
-const FaceRecognition = ({ imageUrl }) => {
+const FaceRecognition = ({ imageUrl, imageRef, box }) => {
   return (
     <div className="center ma">
       <div className="mt2 face-recognition-container">
         {imageUrl && (
-          <img alt="" src={imageUrl} className="face-recognition-image" />
+          <img
+            alt=""
+            src={imageUrl}
+            className="face-recognition-image"
+            ref={imageRef}
+          />
+        )}
+
+        {box && (
+          <div
+            className="bounding-box"
+            style={{
+              top: `${box.topRow}px`,
+              left: `${box.leftCol}px`,
+              width: `${box.rightCol - box.leftCol}px`,
+              height: `${box.bottomRow - box.topRow}px`,
+            }}
+          ></div>
         )}
       </div>
     </div>
