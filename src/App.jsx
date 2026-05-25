@@ -15,7 +15,24 @@ function App() {
   const [box, setBox] = useState({});
   const [route, setRoute] = useState("signin");
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [user, setUser] = useState({
+    id: "",
+    name: "",
+    email: "",
+    entries: 0,
+    joined: "",
+  });
   const imageRef = useRef(null);
+
+  const loadUser = (data) => {
+    setUser({
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      entries: data.entries,
+      joined: data.joined,
+    });
+  };
 
   const onInputChange = (event) => {
     setInput(event.target.value);
@@ -23,6 +40,19 @@ function App() {
 
   const onButtonSubmit = () => {
     setImageUrl(input);
+
+    fetch("http://localhost:3000/image", {
+      method: "put",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: user.id,
+      }),
+    })
+      .then((response) => response.json())
+      .then((count) => {
+        setUser({ ...user, entries: count });
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleImageLoad = () => {
@@ -63,7 +93,7 @@ function App() {
       {route === "home" ? (
         <>
           <Logo />
-          <Rank />
+          <Rank name={user.name} entries={user.entries} />
           <ImageLinkForm
             input={input}
             onInputChange={onInputChange}
@@ -77,9 +107,9 @@ function App() {
           />
         </>
       ) : route === "signin" ? (
-        <Signin onRouteChange={onRouteChange} />
+        <Signin onRouteChange={onRouteChange} loadUser={loadUser} />
       ) : (
-        <Register onRouteChange={onRouteChange} />
+        <Register onRouteChange={onRouteChange} loadUser={loadUser} />
       )}
     </div>
   );
