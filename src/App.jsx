@@ -12,6 +12,7 @@ import "./App.css";
 function App() {
   const [input, setInput] = useState("");
   const [imageUrl, setImageUrl] = useState(null);
+  const [pendingImageUrl, setPendingImageUrl] = useState("");
   const [box, setBox] = useState({});
   const [route, setRoute] = useState("signin");
   const [isSignedIn, setIsSignedIn] = useState(false);
@@ -40,7 +41,11 @@ function App() {
 
   const onButtonSubmit = () => {
     setImageUrl(input);
+    setPendingImageUrl(input);
+    setBox({});
+  };
 
+  const updateUserEntries = () => {
     fetch("http://localhost:3000/image", {
       method: "put",
       headers: { "Content-Type": "application/json" },
@@ -56,6 +61,10 @@ function App() {
   };
 
   const handleImageLoad = () => {
+    if (imageUrl && pendingImageUrl === imageUrl) {
+      setPendingImageUrl("");
+      updateUserEntries();
+    }
     displayBox(getBoxLocation());
   };
 
