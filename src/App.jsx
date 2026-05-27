@@ -9,6 +9,14 @@ import Register from "./components/register/Register";
 import ParticlesBg from "particles-bg";
 import "./App.css";
 
+const initialUserState = {
+  id: "",
+  name: "",
+  email: "",
+  entries: 0,
+  joined: "",
+};
+
 function App() {
   const [input, setInput] = useState("");
   const [imageUrl, setImageUrl] = useState(null);
@@ -16,13 +24,7 @@ function App() {
   const [box, setBox] = useState({});
   const [route, setRoute] = useState("signin");
   const [isSignedIn, setIsSignedIn] = useState(false);
-  const [user, setUser] = useState({
-    id: "",
-    name: "",
-    email: "",
-    entries: 0,
-    joined: "",
-  });
+  const [user, setUser] = useState(initialUserState);
   const imageRef = useRef(null);
 
   const loadUser = (data) => {
@@ -89,6 +91,11 @@ function App() {
   const onRouteChange = (route) => {
     if (route === "signout") {
       setIsSignedIn(false);
+      setUser(initialUserState);
+      setInput("");
+      setImageUrl(null);
+      setPendingImageUrl("");
+      setBox({});
     } else if (route === "home") {
       setIsSignedIn(true);
     }
@@ -115,7 +122,7 @@ function App() {
             onImageLoad={handleImageLoad}
           />
         </>
-      ) : route === "signin" ? (
+      ) : route === "signin" || route === "signout" ? (
         <Signin onRouteChange={onRouteChange} loadUser={loadUser} />
       ) : (
         <Register onRouteChange={onRouteChange} loadUser={loadUser} />
