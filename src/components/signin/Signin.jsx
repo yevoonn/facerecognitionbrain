@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { API_URL } from "../../config.js";
 
 const Signin = ({ onRouteChange, loadUser }) => {
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ const Signin = ({ onRouteChange, loadUser }) => {
   };
 
   const onSubmitSignIn = () => {
-    fetch("http://localhost:3000/signin", {
+    fetch(`${API_URL}/signin`, {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -7,6 +7,7 @@ import FaceRecognition from "./components/facerecognition/FaceRecognition";
 import Signin from "./components/signin/Signin";
 import Register from "./components/register/Register";
 import ParticlesBg from "particles-bg";
+import { API_URL } from "./config";
 import "./App.css";
 
 const initialUserState = {
@@ -48,7 +49,7 @@ function App() {
   };
 
   const updateUserEntries = () => {
-    fetch("http://localhost:3000/image", {
+    fetch(`${API_URL}/image`, {
       method: "put",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
